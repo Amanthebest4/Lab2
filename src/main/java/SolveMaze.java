@@ -20,7 +20,7 @@ public class SolveMaze {
         /*
          * Create a new 10 x 10 maze. Feel free to change these values.
          */
-        Maze maze = new Maze(10, 10);
+        Maze maze = new Maze(2000, 1000);
 
         /*
          * Pick (0, 0), the bottom left corner, as the starting point.
@@ -34,31 +34,12 @@ public class SolveMaze {
          * Feel free to adjust this number if you experiment with other mazes.
          */
         int step = 0;
-        while (maze.isFinished() == false) {
-            //maze.turnLeft();
-            if (maze.canMove() == true) {
-                maze.move();
-            } else {
-                int i = (int) Math.random() * 1;
-                if (i == 0) {
-                    maze.turnRight();
-                } else {
-                    maze.turnLeft();
-                }
-            }
-            /* maze.turnRight();
-            if (maze.canMove() == true) {
-                maze.move();
-            } else {
+        while (!maze.isFinished()) {
+            maze.turnLeft();
+            while (!maze.canMove()) {
                 maze.turnRight();
-                if (maze.canMove() == true) {
-                    maze.move();
-                } else {
-                    maze.turnRight();
-                    maze.move();
-                }
             }
-        }*/
+            maze.move();
             step++;
         }
         System.out.println(step);
